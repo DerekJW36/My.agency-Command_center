@@ -1,0 +1,17 @@
+{
+    "url": "https://google.com",
+    "status": "Secure",
+    "seo": {
+        "has_description": true,
+        "title": "Google",
+        "has_og": false,
+        "has_twitter": false
+    },
+    "ux_wow_factor": {
+        "has_3d_canvas": false,
+        "responsive": false
+    },
+    "marketing": {
+        "has_analytics": false
+    }
+}
