@@ -39,3 +39,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+.rocketride/
+
+# Agency CRM Local
+/results/
+/notebooklm-py/
+/life_sync_ai_app_edit/
+/test_supabase.js
+*.lnk
+.claude/
+

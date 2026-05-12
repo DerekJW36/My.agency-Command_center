@@ -1,0 +1,153 @@
+.about-section {
+    padding: var(--spacing-xl) 0;
+    background: var(--gradient-dark);
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 3rem;
+    margin-bottom: var(--spacing-lg);
+}
+
+.about-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--color-text-muted);
+}
+
+.about-lead {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 1.5rem;
+}
+
+.about-text p {
+    margin-bottom: 1.5rem;
+}
+
+.about-text strong {
+    color: var(--color-text);
+    font-weight: 700;
+}
+
+.founder-card {
+    padding: 2rem;
+    border: 1px solid var(--glass-border);
+}
+
+.founder-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.founder-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: white;
+}
+
+.founder-name {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 0.25rem;
+}
+
+.founder-title {
+    font-size: 0.875rem;
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+.founder-bio {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-text-muted);
+    margin-bottom: 1.5rem;
+}
+
+.founder-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--glass-border);
+}
+
+.founder-stat {
+    text-align: center;
+}
+
+.founder-stat .stat-value {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--color-accent);
+    margin-bottom: 0.25rem;
+}
+
+.founder-stat .stat-label {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.manifesto-box {
+    padding: 2.5rem;
+    background: var(--color-bg-secondary);
+    border-left: 4px solid var(--color-accent);
+    border-radius: 0.5rem;
+}
+
+.manifesto-title {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--color-text);
+    margin-bottom: 1.5rem;
+}
+
+.manifesto-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.manifesto-list li {
+    padding: 1rem 0;
+    font-size: 1.1rem;
+    color: var(--color-text);
+    border-bottom: 1px solid var(--glass-border);
+    display: flex;
+    align-items: center;
+}
+
+.manifesto-list li:last-child {
+    border-bottom: none;
+}
+
+.manifesto-list li::before {
+    content: '⚡';
+    color: var(--color-accent);
+    font-size: 1.5rem;
+    margin-right: 1rem;
+    flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+    .about-content {
+        grid-template-columns: 1fr;
+    }
+}

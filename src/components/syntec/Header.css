@@ -1,0 +1,106 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 2rem 0;
+    transition: all var(--transition-medium);
+    background: transparent;
+}
+
+.header.scrolled {
+    padding: 1.25rem 0;
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--backdrop-blur));
+    -webkit-backdrop-filter: blur(var(--backdrop-blur));
+    border-bottom: 1px solid var(--glass-border);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.75rem;
+    font-family: var(--font-header);
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    color: var(--color-text);
+    text-transform: uppercase;
+}
+
+.logo-accent {
+    color: var(--color-accent);
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+.nav-link {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    transition: color var(--transition-fast);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    position: relative;
+    padding: 0.5rem 0;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--color-accent);
+    transition: width var(--transition-medium);
+}
+
+.nav-link:hover {
+    color: var(--color-text);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.nav-cta {
+    padding: 0.875rem 1.75rem;
+    background: var(--color-accent);
+    color: white;
+    font-weight: 900;
+    font-size: 0.8125rem;
+    border-radius: 4px;
+    transition: all var(--transition-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.nav-cta:hover {
+    background: var(--color-accent-hover);
+    box-shadow: var(--shadow-glow-red);
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .nav {
+        gap: 1rem;
+    }
+
+    .nav-link {
+        display: none;
+    }
+
+    .logo {
+        font-size: 1.2rem;
+    }
+}

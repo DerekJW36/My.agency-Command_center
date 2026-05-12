@@ -1,0 +1,50 @@
+import { NextRequest } from "next/server";
+import { spawn } from "child_process";
+import path from "path";
+
+export async function POST(req: NextRequest) {
+    try {
+        const { niche, location } = await req.json();
+
+        if (!niche || !location) {
+            return new Response("Niche and Location are required", { status: 400 });
+        }
+
+        const scriptPath = path.join(process.cwd(), "scripts", "lead_gen.py");
+
+        const stream = new ReadableStream({
+            start(controller) {
+                const pythonProcess = spawn('python', [scriptPath, niche, location]);
+
+                pythonProcess.stdout.on('data', (data) => {
+                    controller.enqueue(data);
+                });
+
+                pythonProcess.stderr.on('data', (data) => {
+                    controller.enqueue(data);
+                });
+
+                pythonProcess.on('close', (code) => {
+                    controller.enqueue(new TextEncoder().encode(`\n[PROCESS EXITED WITH CODE ${code}]`));
+                    controller.close();
+                });
+
+                pythonProcess.on('error', (err) => {
+                    controller.enqueue(new TextEncoder().encode(`\n[PROCESS ERROR: ${err.message}]`));
+                    controller.close();
+                });
+            }
+        });
+
+        return new Response(stream, {
+            headers: {
+                "Content-Type": "text/plain",
+                "Cache-Control": "no-cache",
+                "Connection": "keep-alive",
+            },
+        });
+    } catch (error) {
+        console.error("API Error:", error);
+        return new Response("Internal Server Error", { status: 500 });
+    }
+}
