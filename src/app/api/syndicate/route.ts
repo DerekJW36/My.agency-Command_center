@@ -3,7 +3,7 @@ import { exec } from "child_process";
 import path from "path";
 import fs from "fs";
 
-export async function POST(req: NextRequest) {
+export async function POST(req: NextRequest): Promise<NextResponse> {
     try {
         const { businessName, industry, url } = await req.json();
 
@@ -11,18 +11,19 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ error: "Business name and industry are required" }, { status: 400 });
         }
 
-        // Paths
         const scriptPath = path.join(process.cwd(), "notebooklm_syndicate.py");
-        const pythonPath = path.join(process.cwd(), "notebooklm-venv", "Scripts", "python.exe");
 
-        // Command construction
-        // We pass arguments to the script if we modify the script to accept them
-        // For now, let's modify notebooklm_syndicate.py to accept CLI args
-        const command = `"${pythonPath}" "${scriptPath}" "${businessName}" "${industry}" "${url || ""}"`;
+        // Platform-safe Python path (matches neural/route.ts pattern)
+        const pythonExe = process.platform === "win32"
+            ? path.join(process.cwd(), "notebooklm-venv", "Scripts", "python.exe")
+            : "python";
+
+        const actualExe = fs.existsSync(pythonExe) ? pythonExe : "python";
+        const command = `"${actualExe}" "${scriptPath}" "${businessName}" "${industry}" "${url || ""}"`;
 
         console.log(`Running Syndicate Engine: ${command}`);
 
-        return new Promise((resolve) => {
+        return new Promise<NextResponse>((resolve) => {
             exec(command, (error, stdout, stderr) => {
                 if (error) {
                     console.error(`Syndicate Engine Error: ${error}`);
@@ -32,7 +33,6 @@ export async function POST(req: NextRequest) {
 
                 console.log(`Syndicate Engine Output: ${stdout}`);
 
-                // Parse the output to find the result file path
                 const resultMatch = stdout.match(/\[FILE\] Report File: (.*)/);
                 const reportPath = resultMatch ? resultMatch[1].trim() : null;
 
