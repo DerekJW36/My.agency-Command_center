@@ -3,6 +3,14 @@ import { spawn } from "child_process";
 import path from "path";
 import fs from "fs";
 
+// URLs: allow http/https with standard domain/path characters
+const SAFE_URL = /^https?:\/\/[a-zA-Z0-9\-._~:/?#[\]@!$&'()*+,;=%]+$/;
+
+function sanitizeUrl(value: string): string | null {
+    const trimmed = value.trim().slice(0, 500);
+    return SAFE_URL.test(trimmed) ? trimmed : null;
+}
+
 export async function POST(req: NextRequest) {
     try {
         const { url } = await req.json();
@@ -11,8 +19,12 @@ export async function POST(req: NextRequest) {
             return new Response("URL is required", { status: 400 });
         }
 
+        const safeUrl = sanitizeUrl(url);
+        if (!safeUrl) {
+            return new Response("Invalid URL format", { status: 400 });
+        }
+
         const scriptPath = path.join(process.cwd(), "scripts", "neural_research.py");
-        // Securely use the dedicated virtual environment if it exists
         const pythonExe = process.platform === "win32"
             ? path.join(process.cwd(), "notebooklm-venv", "Scripts", "python.exe")
             : "python";
@@ -20,14 +32,15 @@ export async function POST(req: NextRequest) {
         const stream = new ReadableStream({
             start(controller) {
                 const actualExe = fs.existsSync(pythonExe) ? pythonExe : 'python';
-                const pythonProcess = spawn(actualExe, [scriptPath, url]);
+                const pythonProcess = spawn(actualExe, [scriptPath, safeUrl]);
 
                 pythonProcess.stdout.on('data', (data) => {
                     controller.enqueue(data);
                 });
 
+                // Log stderr server-side only — never expose to client
                 pythonProcess.stderr.on('data', (data) => {
-                    controller.enqueue(data);
+                    console.error(`[neural stderr]: ${data}`);
                 });
 
                 pythonProcess.on('close', (code) => {
