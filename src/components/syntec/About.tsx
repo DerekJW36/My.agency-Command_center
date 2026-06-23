@@ -6,7 +6,7 @@ const About = () => {
         <section className="about-section">
             <div className="container-narrow">
                 <h2 className="section-title">
-                    Why <span className="text-accent">DCG Syntec AI</span>?
+                    Why <span className="text-accent">Ethertecsys DCG</span>?
                 </h2>
 
                 <div className="about-content">
@@ -38,7 +38,7 @@ const About = () => {
                             </div>
                         </div>
                         <p className="founder-bio">
-                            Ex-tech strategist turned AI underground architect. Built DCG Syntec AI after watching
+                            Ex-tech strategist turned AI underground architect. Built Ethertecsys DCG after watching
                             too many talented Portland shops get crushed by algorithm changes and lazy marketing agencies.
                             Now running the AI syndicate for shops that refuse to play small.
                         </p>

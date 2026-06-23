@@ -16,7 +16,7 @@ const Header = () => {
     <header className={`header ${scrolled ? 'scrolled' : ''}`}>
       <div className="container header-content">
         <a href="/" className="logo">
-          DCG SYNTEC<span className="logo-accent"> AI</span>
+          ETHERTECSYS<span className="logo-accent"> DCG</span>
         </a>
         <nav className="nav">
           <a href="#solutions" className="nav-link">Solutions</a>

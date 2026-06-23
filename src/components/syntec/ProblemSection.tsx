@@ -29,7 +29,7 @@ const ProblemSection = () => {
 
                 <div className="before-after">
                     <div className="comparison-card before">
-                        <div className="card-label">Before DCG Syntec AI</div>
+                        <div className="card-label">Before Ethertecsys DCG</div>
                         <div className="card-visual">
                             <div className="ghost-pin">📍</div>
                             <div className="card-text">Ghost town on Google Maps</div>
@@ -46,7 +46,7 @@ const ProblemSection = () => {
                     </div>
 
                     <div className="comparison-card after">
-                        <div className="card-label">After DCG Syntec AI</div>
+                        <div className="card-label">After Ethertecsys DCG</div>
                         <div className="card-visual">
                             <div className="fire-pin">📍🔥</div>
                             <div className="card-text">Top 3 spot, review explosion</div>

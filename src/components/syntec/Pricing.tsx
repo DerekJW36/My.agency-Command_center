@@ -28,6 +28,22 @@ const Pricing = () => {
                             <li>Initial review syndicate setup</li>
                             <li>48-hour activation</li>
                         </ul>
+                        <div style={{
+                            marginTop: '1.5rem',
+                            padding: '1rem',
+                            background: 'rgba(255,45,0,0.08)',
+                            border: '1px solid rgba(255,45,0,0.2)',
+                            borderRadius: '0.5rem',
+                            fontSize: '0.85rem',
+                            lineHeight: 1.5
+                        }}>
+                            <div style={{ color: 'var(--color-accent)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.4rem' }}>
+                                New Client Payment Split
+                            </div>
+                            <div style={{ color: 'var(--color-text-muted)' }}>
+                                <strong style={{ color: 'var(--color-text)' }}>$5,000</strong> to kick off &nbsp;·&nbsp; <strong style={{ color: 'var(--color-accent)' }}>$5,000</strong> due on results
+                            </div>
+                        </div>
                     </div>
 
                     <div className="pricing-card featured">
@@ -35,8 +51,7 @@ const Pricing = () => {
                         <div className="pricing-label">Monthly Retainer</div>
                         <div className="pricing-amount">
                             <span className="currency">$</span>
-                            <span className="price">3,000</span>
-                            <span className="price-range">-5,000</span>
+                            <span className="price">3,000–5,000</span>
                         </div>
                         <ul className="pricing-features">
                             <li>Full AI automation & scaling</li>
@@ -45,6 +60,22 @@ const Pricing = () => {
                             <li>Weekly performance reports</li>
                             <li>Priority support</li>
                         </ul>
+                        <div style={{
+                            marginTop: '1.5rem',
+                            padding: '1rem',
+                            background: 'rgba(255,45,0,0.08)',
+                            border: '1px solid rgba(255,45,0,0.2)',
+                            borderRadius: '0.5rem',
+                            fontSize: '0.85rem',
+                            lineHeight: 1.5
+                        }}>
+                            <div style={{ color: 'var(--color-accent)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.4rem' }}>
+                                New Client Payment Split
+                            </div>
+                            <div style={{ color: 'var(--color-text-muted)' }}>
+                                <strong style={{ color: 'var(--color-text)' }}>Half upfront</strong> to launch &nbsp;·&nbsp; <strong style={{ color: 'var(--color-accent)' }}>Half on results</strong>
+                            </div>
+                        </div>
                     </div>
                 </div>
 

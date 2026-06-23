@@ -5,7 +5,7 @@ import Header from '@/components/syntec/Header';
 import Hero from '@/components/syntec/Hero';
 import ProblemSection from '@/components/syntec/ProblemSection';
 import Solutions from '@/components/syntec/Solutions';
-import CaseStudies from '@/components/syntec/CaseStudies';
+import NewClientBonus from '@/components/syntec/NewClientBonus';
 import Pricing from '@/components/syntec/Pricing';
 import About from '@/components/syntec/About';
 import SyndicateAuditForm from '@/components/syntec/SyndicateAuditForm';
@@ -26,7 +26,7 @@ export default function Home() {
           <SyndicateAuditForm />
           <ProblemSection />
           <Solutions />
-          <CaseStudies />
+          <NewClientBonus />
           <Pricing />
           <About />
         </main>
@@ -49,7 +49,7 @@ export default function Home() {
 
             <div className="footer-bottom">
               <div className="footer-brand">
-                <div className="footer-logo">DCG SYNTEC <span className="text-accent">AI</span></div>
+                <div className="footer-logo">ETHERTECSYS <span className="text-accent">DCG</span></div>
                 <p className="footer-tagline">Portland's AI Syndicate for Non-Conformist Builders & Rodders</p>
               </div>
 
@@ -66,7 +66,7 @@ export default function Home() {
             </div>
 
             <div className="footer-legal">
-              <p>&copy; {new Date().getFullYear()} DCG Syntec AI. All rights reserved.</p>
+              <p>&copy; {new Date().getFullYear()} Ethertecsys DCG. All rights reserved.</p>
               <p className="legal-note">LLC filing in progress</p>
             </div>
           </div>

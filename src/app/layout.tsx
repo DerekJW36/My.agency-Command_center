@@ -14,7 +14,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "DCG Syntec AI | Portland's AI Syndicate",
+  title: "Ethertecsys DCG | Portland's AI Syndicate",
   description: "Dominance, not excuses. AI lead domination for non-conformist builders and rodders in Portland, OR.",
 };
 

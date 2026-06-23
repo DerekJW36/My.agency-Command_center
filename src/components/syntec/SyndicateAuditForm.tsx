@@ -145,7 +145,7 @@ const SyndicateAuditForm = () => {
                 </div>
 
                 <p className="mt-8 text-center text-zinc-600 text-sm font-mono uppercase tracking-widest">
-                    POWERED BY DCG SYNTEC // RESEARCH ENGINE V1.0
+                    POWERED BY ETHERTECSYS DCG // RESEARCH ENGINE V1.0
                 </p>
             </div>
         </section>
