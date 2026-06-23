@@ -1,0 +1,1 @@
+always start by locating relavent skills for optimization

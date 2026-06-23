@@ -49,3 +49,14 @@ next-env.d.ts
 *.lnk
 .claude/
 
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Editor
+.vscode/
+.idea/
+
