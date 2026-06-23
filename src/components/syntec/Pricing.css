@@ -237,6 +237,10 @@
         grid-template-columns: 1fr;
     }
 
+    .pricing-card {
+        padding: 2.5rem 1.5rem;
+    }
+
     .guarantee-stats {
         grid-template-columns: 1fr;
         gap: 3rem;
@@ -244,5 +248,9 @@
 
     .guarantee-box {
         padding: 3rem 1.5rem;
+    }
+
+    .stat-number {
+        font-size: 2.5rem;
     }
 }

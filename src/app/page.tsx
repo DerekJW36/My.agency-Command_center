@@ -56,7 +56,7 @@ export default function Home() {
               <div className="footer-contact">
                 <div className="contact-item">
                   <span className="contact-label">Email:</span>
-                  <a href="mailto:derek@dcgsyntec.ai" className="contact-link">derek@dcgsyntec.ai</a>
+                  <a href="mailto:hello@ethertecsys.com" className="contact-link">hello@ethertecsys.com</a>
                 </div>
                 <div className="contact-item">
                   <span className="contact-label">Location:</span>
