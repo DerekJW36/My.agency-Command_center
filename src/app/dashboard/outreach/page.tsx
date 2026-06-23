@@ -27,19 +27,20 @@ export default function OutreachHub() {
     }, []);
 
     const getEmailBody = (lead: any) => {
-        const demoLink = lead.demo_link || "https://planetsyntec.com/demo";
-        return `Hi ${lead.url} Team,
+        const demoLink = lead.demo_link || "https://ethertecsys.com/demo";
+        const domain = lead.url?.replace(/^https?:\/\//, "").replace(/\/$/, "") || lead.url;
+        return `Hi ${domain} Team,
 
-I've built a custom 3D interactive concept for your site. No templates — it's designed specifically around your brand.
+I've built a custom AI-powered lead system specifically for businesses in your space — no templates, built around your market.
 
-Preview it here: ${demoLink}
+See what it looks like in action: ${demoLink}
 
-Most sites in your space are still running flat, static layouts. This puts you ahead instantly.
+Most competitors are still doing manual follow-up and losing leads to faster responders. This changes that.
 
-Happy to walk you through it — just reply to this email.
+Happy to walk you through it — just reply here.
 
-Best,
-Planet Syntec Team`;
+— Derek
+Ethertecsys DCG | hello@ethertecsys.com`;
     };
 
     const downloadEml = (lead: any) => {

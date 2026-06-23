@@ -78,9 +78,9 @@ export default function SettingsPage() {
             <div className="space-y-6">
 
                 <SECTION title="Agency Identity" icon={<Zap className="h-4 w-4 text-blue-500" />}>
-                    <Field label="Agency Name" placeholder="e.g. Planet Syntec" defaultValue="Planet Syntec" />
-                    <Field label="Agency Domain" placeholder="e.g. planetsyntec.com" />
-                    <Field label="Sender Email" placeholder="e.g. hello@planetsyntec.com" type="email" />
+                    <Field label="Agency Name" placeholder="e.g. Ethertecsys DCG" defaultValue="Ethertecsys DCG" />
+                    <Field label="Agency Domain" placeholder="e.g. ethertecsys.com" defaultValue="ethertecsys.com" />
+                    <Field label="Sender Email" placeholder="e.g. hello@ethertecsys.com" defaultValue="hello@ethertecsys.com" type="email" />
                 </SECTION>
 
                 <SECTION title="Supabase Connection" icon={<Database className="h-4 w-4 text-purple-500" />}>
@@ -101,7 +101,7 @@ export default function SettingsPage() {
 
                 <SECTION title="Outreach Settings" icon={<Globe className="h-4 w-4 text-green-500" />}>
                     <Field label="Default Demo Link" placeholder="e.g. https://your-showroom.vercel.app" />
-                    <Field label="Email Signature" placeholder="Best regards, The Planet Syntec Team" />
+                    <Field label="Email Signature" placeholder="— Derek | Ethertecsys DCG | hello@ethertecsys.com" defaultValue="— Derek | Ethertecsys DCG | hello@ethertecsys.com" />
                     <Toggle label="Auto-generate email on new lead" description="Automatically draft an outreach email when a lead is synced." defaultChecked />
                 </SECTION>
 
