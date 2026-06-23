@@ -2,6 +2,14 @@ import { NextRequest } from "next/server";
 import { spawn } from "child_process";
 import path from "path";
 
+// Allowlist: letters, numbers, spaces, hyphens, commas, periods, ampersands
+const SAFE_INPUT = /^[a-zA-Z0-9 \-,.'&]+$/;
+
+function sanitize(value: string, maxLen = 100): string | null {
+    const trimmed = value.trim().slice(0, maxLen);
+    return SAFE_INPUT.test(trimmed) ? trimmed : null;
+}
+
 export async function POST(req: NextRequest) {
     try {
         const { niche, location } = await req.json();
@@ -10,18 +18,26 @@ export async function POST(req: NextRequest) {
             return new Response("Niche and Location are required", { status: 400 });
         }
 
+        const safeNiche = sanitize(niche);
+        const safeLocation = sanitize(location);
+
+        if (!safeNiche || !safeLocation) {
+            return new Response("Invalid characters in input", { status: 400 });
+        }
+
         const scriptPath = path.join(process.cwd(), "scripts", "lead_gen.py");
 
         const stream = new ReadableStream({
             start(controller) {
-                const pythonProcess = spawn('python', [scriptPath, niche, location]);
+                const pythonProcess = spawn('python', [scriptPath, safeNiche, safeLocation]);
 
                 pythonProcess.stdout.on('data', (data) => {
                     controller.enqueue(data);
                 });
 
+                // Log stderr server-side only — never expose to client
                 pythonProcess.stderr.on('data', (data) => {
-                    controller.enqueue(data);
+                    console.error(`[lead_gen stderr]: ${data}`);
                 });
 
                 pythonProcess.on('close', (code) => {

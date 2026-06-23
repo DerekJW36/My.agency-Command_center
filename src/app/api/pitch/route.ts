@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
             messages: [
                 {
                     role: "system",
-                    content: "You are a state-of-the-art AI Marketing Agency founder specialized in 3D WebGL websites and high-conversion UX systems. Your goal is to write a short, aggressive, but professional 'Planet Syntec' style pitch to a potential client based on their website audit."
+                    content: "You are a state-of-the-art AI Marketing Agency founder specialized in 3D WebGL websites and high-conversion UX systems. Your goal is to write a short, aggressive, but professional 'Ethertecsys DCG' style pitch to a potential client based on their website audit."
                 },
                 {
                     role: "user",
@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
             - 3D/Canvas Tech: ${ux_wow_factor?.has_3d_canvas ? "Detected" : "Not found"}
             - Mobile Responsive: ${ux_wow_factor?.responsive ? "Yes" : "No"}
 
-            Focus on how their current site lacks the "WOW Factor" and prestige of elective 3D environments, and how that's costing them conversions. Refer to our "Planet Syntec" 3D landing environment as a baseline for comparison. Keep it under 200 words.
+            Focus on how their current site lacks the "WOW Factor" and prestige of elective 3D environments, and how that's costing them conversions. Refer to our "Ethertecsys DCG" 3D landing environment as a baseline for comparison. Keep it under 200 words.
           `
                 }
             ],

@@ -23,8 +23,8 @@ export default function DashboardLayout({
                             <Zap className="h-5 w-5 text-white fill-white" />
                         </div>
                         <div>
-                            <h2 className="text-xl font-black tracking-tighter">SYNTEC</h2>
-                            <p className="text-[8px] font-bold uppercase tracking-[0.2em] text-blue-500">Neural Agency</p>
+                            <h2 className="text-xl font-black tracking-tighter">ETHERTECSYS</h2>
+                            <p className="text-[8px] font-bold uppercase tracking-[0.2em] text-blue-500">DCG Command</p>
                         </div>
                     </div>
                 </div>
