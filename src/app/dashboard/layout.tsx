@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, Users, Send, Terminal, Zap, Settings } from "lucide-react";
+import { LayoutDashboard, Users, Send, Terminal, Zap, Settings, Briefcase } from "lucide-react";
 
 
 export default function DashboardLayout({
@@ -34,6 +34,7 @@ export default function DashboardLayout({
                     <SidebarLink href="/dashboard/crm" icon={<Users className="h-5 w-5" />} label="CRM / Pipeline" active={pathname === "/dashboard/crm"} />
                     <SidebarLink href="/dashboard/outreach" icon={<Send className="h-5 w-5" />} label="Outreach Hub" active={pathname === "/dashboard/outreach"} />
                     <SidebarLink href="/dashboard/analytics" icon={<Terminal className="h-5 w-5" />} label="Neural Intelligence" active={pathname === "/dashboard/analytics"} />
+                    <SidebarLink href="/dashboard/fulfillment" icon={<Briefcase className="h-5 w-5" />} label="Fulfillment" active={pathname === "/dashboard/fulfillment"} />
                 </nav>
 
                 <div className="border-t border-zinc-800/50 p-4">

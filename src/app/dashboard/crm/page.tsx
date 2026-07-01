@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { motion, AnimatePresence } from "framer-motion";
-import { Users, Filter, Plus, MoreVertical, Globe, Mail, CheckCircle2, Clock, AlertCircle } from "lucide-react";
+import { Users, Plus, MoreVertical, Globe, Mail, Clock, MapPin } from "lucide-react";
 
 const STAGES = ["NEW", "AUDITED", "PITCHED", "DEMO SENT", "CLOSED"];
 
@@ -45,15 +45,25 @@ export default function CRMPage() {
     }, []);
 
     const updateStatus = async (id: string, newStatus: string) => {
+        const updates: Record<string, unknown> = { status: newStatus };
+
+        // When a deal is CLOSED → auto-promote to fulfillment pipeline
+        if (newStatus === "CLOSED") {
+            updates.pipeline = "FULFILLMENT";
+            updates.fulfillment_stage = "INTAKE SENT";
+        }
+
         const { error } = await supabase
             .from("audits")
-            .update({ status: newStatus })
+            .update(updates)
             .eq("id", id);
 
         if (error) console.error("Error updating status:", error);
     };
 
-    const filteredLeads = filter === "ALL" ? leads : leads.filter(l => l.status === filter);
+    // CRM shows only SALES pipeline leads; FULFILLMENT lives in /fulfillment
+    const salesLeads = leads.filter(l => !l.pipeline || l.pipeline === "SALES");
+    const filteredLeads = filter === "ALL" ? salesLeads : salesLeads.filter(l => l.status === filter);
 
     return (
         <div className="p-8">
@@ -109,13 +119,34 @@ export default function CRMPage() {
                                     <div className="flex-1 min-w-0">
                                         <h3 className="text-lg font-bold text-white truncate group-hover:text-blue-400 transition-colors uppercase tracking-tight">{lead.url}</h3>
                                         <div className="flex items-center gap-4 mt-1 text-xs text-zinc-500 font-medium">
-                                            <span className="flex items-center gap-1.5 capitalize"><Clock className="h-3 w-3" /> {new Date(lead.created_at).toLocaleDateString()}</span>
-                                            <span className="flex items-center gap-1.5"><Mail className="h-3 w-3" /> Outreach Initialized</span>
+                                            <span className="flex items-center gap-1.5"><Clock className="h-3 w-3" /> {new Date(lead.created_at).toLocaleDateString()}</span>
+                                            {lead.niche && <span className="flex items-center gap-1.5 capitalize"><MapPin className="h-3 w-3" /> {lead.niche}</span>}
+                                            <span className={`flex items-center gap-1.5 font-bold ${lead.has_gbp ? "text-green-500" : "text-red-400"}`}>
+                                                GBP: {lead.has_gbp ? "✓" : "✗"}
+                                            </span>
                                         </div>
+                                        {lead.tags && lead.tags.length > 0 && (
+                                            <div className="flex flex-wrap gap-1 mt-2">
+                                                {lead.tags.map((tag: string) => (
+                                                    <span key={tag} className="px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-widest bg-zinc-800 text-zinc-400 border border-zinc-700/50">
+                                                        {tag.replace(/_/g, " ")}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
 
                                 <div className="flex items-center gap-8">
+                                    {lead.digital_presence_score !== undefined && (
+                                        <div className="flex flex-col items-center gap-1">
+                                            <span className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-600">Score</span>
+                                            <span className={`text-lg font-black ${
+                                                lead.digital_presence_score >= 70 ? "text-green-400" :
+                                                lead.digital_presence_score >= 40 ? "text-yellow-400" : "text-red-400"
+                                            }`}>{lead.digital_presence_score}</span>
+                                        </div>
+                                    )}
                                     <div className="flex flex-col items-end gap-1">
                                         <span className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-600">Current Status</span>
                                         <select
