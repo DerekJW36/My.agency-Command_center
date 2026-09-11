@@ -38,7 +38,7 @@ export const CircuitBoard: React.FC<CircuitBoardProps> = ({
     const [nodes, setNodes] = useState<CircuitNode[]>([]);
     const [lines, setLines] = useState<CircuitLine[]>([]);
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-    const animationRef = useRef<number>();
+    const animationRef = useRef<number | undefined>(undefined);
 
     const getThemeColors = () => {
         const colors =
